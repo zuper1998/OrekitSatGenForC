@@ -60,8 +60,8 @@ public class Graph {
         .
         SAT-XXX|num of lines
      */
-    public void SaveToFile() {
-        String filename = SimValues.satData.split("\\.")[0];
+    public void SaveToFile(File satData) {
+        String filename = satData.getName();
         FileWriter file = null;
         try {
             file = new FileWriter( String.format("%s.satNetwork",filename ) );

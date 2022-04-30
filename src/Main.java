@@ -3,18 +3,29 @@ import Graph.Graph;
 import Utilty.QuantumBitTransmitanceCalculator;
 import Utilty.SimValues;
 
+import java.io.File;
+
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SatOrbitProbagation.loadStuff();
-
-        if (SimValues.IsSim) {
-            Graph g = new Graph();
-            g.GenerateGraph(SatOrbitProbagation.Generate());
-            SimValues.calc.set(new QuantumBitTransmitanceCalculator());
-            g.calculateAllTransmittance();
-            g.SaveToFile();
+        File dir = new File(("src/Data/In"));
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null) {
+            for (File child : directoryListing) {
+                if (child.getName().contains("QSAT_RETRO_LOW")) {
+                    System.out.println(child.getName());
+                    if (SimValues.IsSim) {
+                        Graph g = new Graph();
+                        g.GenerateGraph(SatOrbitProbagation.Generate(child));
+                        SimValues.calc.set(new QuantumBitTransmitanceCalculator());
+                        g.calculateAllTransmittance();
+                        g.SaveToFile(child);
+                    }
+                }
+            }
         }
+
     }
 }

@@ -53,14 +53,14 @@ public class SatOrbitProbagation {
                 .shiftedBy(0);
     }
 
-    public static Map<String, ArrayList<SatFlightData>> Generate() {
+    public static Map<String, ArrayList<SatFlightData>> Generate(File satData) {
 
         //  Initial state definition : date, orbit
 
         final double mu = 3.986004415e+14; // gravitation coefficient
         final Frame inertialFrame = FramesFactory.getEME2000(); // inertial frame for orbit definition
         ArrayList<Satellite_Sajat> sats = Satellite_Sajat.SatLoader(
-                satData);
+                satData.getAbsolutePath());
 
         Map<String, Propagator> orbits = new HashMap<>();
         for (Satellite_Sajat s1 : sats) {
