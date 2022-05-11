@@ -72,9 +72,7 @@ public class SatOrbitProbagation {
             orbits.put(s1.Name, new KeplerianPropagator(initialOrbit));
         }
         ArrayList<City> cities = SimValues.cities;
-        /*
-        cities.add(new City(52.520008, 13.404954, 43, "Berlin"));
-        cities.add(new City(-74, 40.69, 43, "NewYork"));*/
+
         final Frame earthFrame = FramesFactory.getITRF(IERSConventions.IERS_2010, true);
 
 
@@ -102,6 +100,7 @@ public class SatOrbitProbagation {
             final GeodeticPoint station1 = new GeodeticPoint(c.latitude, c.longitude, c.altitude);
             final TopocentricFrame sta1Frame = new TopocentricFrame(earth, station1, c.getName());
             cityFrames.add(sta1Frame);
+
 
         }
 

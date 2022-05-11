@@ -46,19 +46,6 @@ public class QuantumBitTransmitanceCalculator implements Serializable {
             e.printStackTrace();
         }
     }
-    //TODO: WARNING Dir is set to 2 here
-    public double  calculateQBITSUMCity(double elevation,double height_above_sea,int dir){
-        dir=2;
-        calc.setDirection(dir);
-        double zenithAngle = 90-elevation;
-        double heightAboveSeaLevel = height_above_sea/1000; //correct to km and remove the earth
-        calc.setOpticalDistance(zenithAngle, heightAboveSeaLevel);
-        calc.setQber(); // if distance over sea is above 2000 it gets funky xd
-
-        double bits = 0.5 * calc.getFrequencyOfLaserFiring() * DefaultValues.quantumEfficiencyOfDetector * calc.getTransmittance() * calc.getMeanPhotonNumberOfSignal();
-
-        return bits;
-    }
 
 
     public double  calculateTransmitanceCity(double elevation,double height_above_sea,int dir){

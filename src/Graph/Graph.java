@@ -2,6 +2,7 @@ package Graph;
 
 import Utilty.SatFlightData;
 import Utilty.SimValues;
+import accessories.DefaultValues;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -45,7 +46,9 @@ public class Graph {
     }
 
 
-
+    /*
+        Using QSCS2.0
+     */
     public void calculateAllTransmittance() {
 
         nodes.forEach((a, b) -> b.edges.forEach(Edge::genTransmittance));
@@ -64,6 +67,9 @@ public class Graph {
         String filename = satData.getName();
         FileWriter file = null;
         try {
+            if(SimValues.cityData != "src/Data/cities.txt"){
+                filename = "Test_"+filename;
+            }
             file = new FileWriter( String.format("%s.satNetwork",filename ) );
             System.out.printf("Saving to file: %s.satNetwork",filename);
             BufferedWriter writer = new BufferedWriter(file);

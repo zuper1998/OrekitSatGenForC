@@ -14,7 +14,7 @@ public class Main {
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
-                if (child.getName().contains("QSAT_RETRO_LOW")) {
+                if(child.getName().contains("LOW")) {
                     System.out.println(child.getName());
                     if (SimValues.IsSim) {
                         Graph g = new Graph();
