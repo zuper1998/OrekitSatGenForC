@@ -100,7 +100,7 @@ public class Edge implements Serializable {
             transmittance_values.append(",");
         }
         //System.out.printf("%s|%s|%f|%f%n",transmittance_values,getEndNode().name,data.start.durationFrom(SimValues.initialDate),data.end.durationFrom(SimValues.initialDate));
-        writer.append( String.format("%s|%s|%f|%f%n",transmittance_values,getEndNode().name,data.start.durationFrom(SimValues.initialDate),data.end.durationFrom(SimValues.initialDate)) );
+        writer.write( String.format("%s|%s|%f|%f%n",transmittance_values,getEndNode().name,data.start.durationFrom(SimValues.initialDate),data.end.durationFrom(SimValues.initialDate)) );
 
     }
 

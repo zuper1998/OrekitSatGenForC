@@ -74,8 +74,10 @@ public class Graph {
             System.out.printf("Saving to file: %s.satNetwork",filename);
             BufferedWriter writer = new BufferedWriter(file);
             nodes.forEach((a,b)-> {
+                //System.out.println("Beep");
                 try {
                     b.SaveToFile(writer);
+                    writer.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
