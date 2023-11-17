@@ -74,7 +74,6 @@ public class Graph {
             System.out.printf("Saving to file: %s.satNetwork",filename);
             BufferedWriter writer = new BufferedWriter(file);
             nodes.forEach((a,b)-> {
-                //System.out.println("Beep");
                 try {
                     b.SaveToFile(writer);
                     writer.flush();
@@ -88,4 +87,30 @@ public class Graph {
         }
 
     }
+
+    public void SaveToFileNewFormat(File satData) {
+        String filename = satData.getName();
+        FileWriter file = null;
+        try {
+            if(SimValues.cityData != "src/Data/cities.txt"){
+                filename = "Test_"+filename;
+            }
+            file = new FileWriter( String.format("%s.sat",filename ) );
+            System.out.printf("Saving to file: %s.sat \n",filename);
+            BufferedWriter writer = new BufferedWriter(file);
+            nodes.forEach((a,b)-> {
+                try {
+                    b.SaveToFileNewFormat(writer);
+                    writer.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

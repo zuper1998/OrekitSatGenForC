@@ -21,7 +21,8 @@ public class Main {
                         g.GenerateGraph(SatOrbitProbagation.Generate(child));
                         SimValues.calc.set(new QuantumBitTransmitanceCalculator());
                         g.calculateAllTransmittance();
-                        g.SaveToFile(child);
+                        //g.SaveToFile(child);
+                        g.SaveToFileNewFormat(child);
 
                 }
             }

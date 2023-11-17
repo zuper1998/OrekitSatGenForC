@@ -46,6 +46,18 @@ public class Node implements Serializable {
         });
     }
 
+    public void SaveToFileNewFormat(BufferedWriter writer) throws IOException {
+
+        edges.forEach(e -> {
+            try {
+                e.SaveToFileNewFormat(writer);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
+
+
     public boolean isCity() {
         for(City c : SimValues.cities){
             if(c.getName().equals(name)){
