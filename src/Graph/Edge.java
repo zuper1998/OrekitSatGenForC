@@ -100,7 +100,20 @@ public class Edge implements Serializable {
             transmittance_values.append(",");
         }
         //System.out.printf("%s|%s|%f|%f%n",transmittance_values,getEndNode().name,data.start.durationFrom(SimValues.initialDate),data.end.durationFrom(SimValues.initialDate));
-        writer.append( String.format("%s|%s|%f|%f%n",transmittance_values,getEndNode().name,data.start.durationFrom(SimValues.initialDate),data.end.durationFrom(SimValues.initialDate)) );
+        writer.write( String.format("%s|%s|%f|%f%n",transmittance_values,getEndNode().name,data.start.durationFrom(SimValues.initialDate),data.end.durationFrom(SimValues.initialDate)) );
+
+    }
+    public void SaveToFileNewFormat(BufferedWriter writer) throws IOException {
+        StringBuilder transmittance_values = new StringBuilder();
+        double sum_data = 0;
+        double start = data.start.durationFrom(SimValues.initialDate);
+        double end = data.end.durationFrom(SimValues.initialDate);
+        for(double t : getOrbitData().Transmittance) {
+            sum_data+=t;
+        }
+
+
+        writer.write( String.format("start: %f | end: %f | NODE_FROM: %s | NODE_TO: %s | DATA: %f\n", start,end, getStartNode().name,getEndNode().name, sum_data ));
 
     }
 

@@ -14,15 +14,16 @@ public class Main {
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
-                if(child.getName().contains("LOW")) {
+
                     System.out.println(child.getName());
                     if (SimValues.IsSim) {
                         Graph g = new Graph();
                         g.GenerateGraph(SatOrbitProbagation.Generate(child));
                         SimValues.calc.set(new QuantumBitTransmitanceCalculator());
                         g.calculateAllTransmittance();
-                        g.SaveToFile(child);
-                    }
+                        //g.SaveToFile(child);
+                        g.SaveToFileNewFormat(child);
+
                 }
             }
         }

@@ -15,7 +15,8 @@ import org.orekit.frames.TopocentricFrame;
 import org.orekit.orbits.EquinoctialOrbit;
 import org.orekit.orbits.KeplerianOrbit;
 import org.orekit.orbits.Orbit;
-import org.orekit.orbits.PositionAngle;
+
+import org.orekit.orbits.PositionAngleType;
 import org.orekit.propagation.Propagator;
 import org.orekit.propagation.SpacecraftState;
 import org.orekit.propagation.analytical.KeplerianPropagator;
@@ -64,7 +65,7 @@ public class SatOrbitProbagation {
 
         Map<String, Propagator> orbits = new HashMap<>();
         for (Satellite_Sajat s1 : sats) {
-            final Orbit initialOrbitE = new KeplerianOrbit(s1.a, s1.e, s1.i, s1.omega, s1.raan, s1.lM, PositionAngle.MEAN,
+            final Orbit initialOrbitE = new KeplerianOrbit(s1.a, s1.e, s1.i, s1.omega, s1.raan, s1.lM, PositionAngleType.MEAN,
                     inertialFrame, initialDate, mu);
             final Orbit initialOrbit = new EquinoctialOrbit(initialOrbitE);
 
@@ -124,13 +125,14 @@ public class SatOrbitProbagation {
 
                 for (Map.Entry<String, SpacecraftState> Sat : curState.entrySet()) {
                     SpacecraftState ss = Sat.getValue();
-                    double distance = c.getRange(ss.getPVCoordinates().getPosition(), ss.getFrame(), ss.getDate());
                     //https://www.orekit.org/mailing-list-archives/orekit-users/msg00625.html same as this,check the implementation of getElevation
                     double degree = FastMath.toDegrees(c.getElevation(ss.getPVCoordinates().getPosition(), ss.getFrame(), ss.getDate()));
                     String name = String.format("%s->%s", c.getName(), Sat.getKey());
                     String name_backwards = String.format("%s->%s", Sat.getKey(), c.getName());
 
-                    if (degree > 20) {
+                    if (degree > minAngle) {
+                        double distance = c.getRange(ss.getPVCoordinates().getPosition(), ss.getFrame(), ss.getDate());
+
                         // ->
                         timelineHelperMap.putIfAbsent(name, extrapDate);
                         dataMap.putIfAbsent(name, new ArrayList<>());
