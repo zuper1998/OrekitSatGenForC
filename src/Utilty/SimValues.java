@@ -13,6 +13,7 @@ public class SimValues {
     public static final String cityData = "src/Data/TestCities.txt";
     public static ThreadLocal<QuantumBitTransmitanceCalculator> calc = new ThreadLocal<>();
     public static final ArrayList<City> cities = new ArrayList<>(CityLoader.loadCities(SimValues.cityData));
+    public static final double minAngle = 20;
     public static boolean IsSim = true;
     public static final double minAngle = 20;
     public static AbsoluteDate initialDate;
