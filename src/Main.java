@@ -22,7 +22,7 @@ public class Main {
                         SimValues.calc.set(new QuantumBitTransmitanceCalculator());
                         g.calculateAllTransmittance();
                         g.SaveToFileMultiDataFormat(child);
-                        //g.SaveToFileSingleDataFormat(child);
+                        g.SaveToFileSingleDataFormat(child);
 
                 }
             }

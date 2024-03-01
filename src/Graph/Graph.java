@@ -97,7 +97,7 @@ public class Graph {
                 filename = "Test_"+filename;
             }
             file = new FileWriter( filename );
-            System.out.printf("Saving to file: %s",filename);
+            System.out.printf("Saving to file: %s\n",filename);
             BufferedWriter writer = new BufferedWriter(file);
             nodes.forEach((a,b)-> {
                 try {
