@@ -36,7 +36,6 @@ public class Node implements Serializable {
     }
 
     public void SaveToFile(BufferedWriter writer) throws IOException {
-        writer.write( String.format("%s|%d%n",name,edges.size()));
         edges.forEach(e -> {
             try {
                 e.SaveToFile(writer);

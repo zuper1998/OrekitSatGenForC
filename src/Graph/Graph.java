@@ -2,7 +2,6 @@ package Graph;
 
 import Utilty.SatFlightData;
 import Utilty.SimValues;
-import accessories.DefaultValues;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -63,15 +62,16 @@ public class Graph {
         .
         SAT-XXX|num of lines
      */
-    public void SaveToFile(File satData) {
+    public void SaveToFileMultiDataFormat(File satData) {
         String filename = satData.getName();
+        filename = String.format("%s.satMulti",filename );
         FileWriter file = null;
         try {
             if(SimValues.cityData != "src/Data/cities.txt"){
                 filename = "Test_"+filename;
             }
-            file = new FileWriter( String.format("%s.satNetwork",filename ) );
-            System.out.printf("Saving to file: %s.satNetwork",filename);
+            file = new FileWriter( filename );
+            System.out.printf("Saving to file: %s\n",filename);
             BufferedWriter writer = new BufferedWriter(file);
             nodes.forEach((a,b)-> {
                 try {
@@ -88,15 +88,16 @@ public class Graph {
 
     }
 
-    public void SaveToFileNewFormat(File satData) {
+    public void SaveToFileSingleDataFormat(File satData) {
         String filename = satData.getName();
+        filename = String.format("%s.satSingle",filename );
         FileWriter file = null;
         try {
             if(SimValues.cityData != "src/Data/cities.txt"){
                 filename = "Test_"+filename;
             }
-            file = new FileWriter( String.format("%s.sat",filename ) );
-            System.out.printf("Saving to file: %s.sat \n",filename);
+            file = new FileWriter( filename );
+            System.out.printf("Saving to file: %s",filename);
             BufferedWriter writer = new BufferedWriter(file);
             nodes.forEach((a,b)-> {
                 try {

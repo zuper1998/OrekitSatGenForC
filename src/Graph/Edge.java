@@ -92,15 +92,20 @@ public class Edge implements Serializable {
     }
 
     public void SaveToFile(BufferedWriter writer) throws IOException {
+
+        double start = data.start.durationFrom(SimValues.initialDate);
+        double end = data.end.durationFrom(SimValues.initialDate);
+
         StringBuilder transmittance_values = new StringBuilder();
         int i = 0;
         for(double t : getOrbitData().Transmittance){
             transmittance_values.append(t);
+            //Dont put  ',' after last character
             if(++i<getOrbitData().Transmittance.size())
-            transmittance_values.append(",");
+                transmittance_values.append(",");
         }
-        //System.out.printf("%s|%s|%f|%f%n",transmittance_values,getEndNode().name,data.start.durationFrom(SimValues.initialDate),data.end.durationFrom(SimValues.initialDate));
-        writer.write( String.format("%s|%s|%f|%f%n",transmittance_values,getEndNode().name,data.start.durationFrom(SimValues.initialDate),data.end.durationFrom(SimValues.initialDate)) );
+        writer.write( String.format("start: %f | end: %f | NODE_FROM: %s | NODE_TO: %s | DATA: %s\n",
+                start,end, getStartNode().name,getEndNode().name, transmittance_values));
 
     }
     public void SaveToFileNewFormat(BufferedWriter writer) throws IOException {
@@ -113,7 +118,8 @@ public class Edge implements Serializable {
         }
 
 
-        writer.write( String.format("start: %f | end: %f | NODE_FROM: %s | NODE_TO: %s | DATA: %f\n", start,end, getStartNode().name,getEndNode().name, sum_data ));
+        writer.write( String.format("start: %f | end: %f | NODE_FROM: %s | NODE_TO: %s | DATA: %f\n",
+                start,end, getStartNode().name,getEndNode().name, sum_data ));
 
     }
 
