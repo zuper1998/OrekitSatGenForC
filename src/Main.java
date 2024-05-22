@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         SatOrbitProbagation.loadStuff();
-        File dir = new File(("src/Data/In"));
+        File dir = new File(("src/Data/InSTSM"));
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
