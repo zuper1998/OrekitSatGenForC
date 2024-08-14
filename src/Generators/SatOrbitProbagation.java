@@ -12,11 +12,8 @@ import org.orekit.data.DirectoryCrawler;
 import org.orekit.frames.Frame;
 import org.orekit.frames.FramesFactory;
 import org.orekit.frames.TopocentricFrame;
-import org.orekit.orbits.EquinoctialOrbit;
-import org.orekit.orbits.KeplerianOrbit;
-import org.orekit.orbits.Orbit;
+import org.orekit.orbits.*;
 
-import org.orekit.orbits.PositionAngleType;
 import org.orekit.propagation.Propagator;
 import org.orekit.propagation.SpacecraftState;
 import org.orekit.propagation.analytical.KeplerianPropagator;
@@ -67,6 +64,7 @@ public class SatOrbitProbagation {
         for (Satellite_Sajat s1 : sats) {
             final Orbit initialOrbitE = new KeplerianOrbit(s1.a, s1.e, s1.i, s1.omega, s1.raan, s1.lM, PositionAngleType.MEAN,
                     inertialFrame, initialDate, mu);
+
             final Orbit initialOrbit = new EquinoctialOrbit(initialOrbitE);
 
             // Propagator : consider a simple Keplerian motion (could be more elaborate)
