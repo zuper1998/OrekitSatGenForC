@@ -75,7 +75,8 @@ public class Satellite_Sajat {
         }
 
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println("Err "+e.toString()+ " in Satellite_Sajat");
+            e.printStackTrace();
         }
         return sats;
     }

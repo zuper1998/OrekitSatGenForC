@@ -126,7 +126,9 @@ public class SatOrbitProbagation {
                 for (Map.Entry<String, SpacecraftState> Sat : curState.entrySet()) {
                     SpacecraftState ss = Sat.getValue();
                     //https://www.orekit.org/mailing-list-archives/orekit-users/msg00625.html same as this,check the implementation of getElevation
-                    double degree = FastMath.toDegrees(c.getElevation(ss.getPVCoordinates().getPosition(), ss.getFrame(), ss.getDate()));
+
+                    //double degree = FastMath.toDegrees(c.getElevation(ss.getPVCoordinates().getPosition(), ss.getFrame(), ss.getDate()));
+                    double degree = FastMath.toDegrees(c.getElevation(ss.getPVCoordinates().getPosition(), earthFrame, ss.getDate()));
                     String name = String.format("%s->%s", c.getName(), Sat.getKey());
                     String name_backwards = String.format("%s->%s", Sat.getKey(), c.getName());
 
