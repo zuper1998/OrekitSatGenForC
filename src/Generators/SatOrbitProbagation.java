@@ -118,8 +118,6 @@ public class SatOrbitProbagation {
 
             //check visibility for cities also backwards
             for (TopocentricFrame c : cityFrames) {
-                // 99% the basis of the vector system is earth itself so it wont realy move xd
-
 
                 for (Map.Entry<String, SpacecraftState> Sat : curState.entrySet()) {
                     SpacecraftState ss = Sat.getValue();
@@ -129,6 +127,11 @@ public class SatOrbitProbagation {
                     double degree = FastMath.toDegrees(c.getElevation(ss.getPVCoordinates().getPosition(), earthFrame, ss.getDate()));
                     String name = String.format("%s->%s", c.getName(), Sat.getKey());
                     String name_backwards = String.format("%s->%s", Sat.getKey(), c.getName());
+
+                    if (c.getName().equals("Beijing")){
+                        //System.out.println(degree);
+                    }
+
 
                     if (degree > minAngle) {
                         double distance = c.getRange(ss.getPVCoordinates().getPosition(), ss.getFrame(), ss.getDate());
