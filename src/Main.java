@@ -25,6 +25,7 @@ public class Main {
                         g.SaveToFileSingleDataFormat(child);
 
                 }
+                break;
             }
         }
 

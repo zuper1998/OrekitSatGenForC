@@ -12,6 +12,7 @@ import org.orekit.data.DirectoryCrawler;
 import org.orekit.frames.Frame;
 import org.orekit.frames.FramesFactory;
 import org.orekit.frames.TopocentricFrame;
+import org.orekit.frames.Transform;
 import org.orekit.orbits.*;
 
 import org.orekit.propagation.Propagator;
@@ -50,6 +51,7 @@ public class SatOrbitProbagation {
         initialDate = new AbsoluteDate(2021, 1, 1, 23, 30, 00.000, TimeScalesFactory.getUTC())
                 .shiftedBy(0);
     }
+
 
     public static Map<String, ArrayList<SatFlightData>> Generate(File satData) {
 
@@ -123,17 +125,20 @@ public class SatOrbitProbagation {
                     SpacecraftState ss = Sat.getValue();
                     //https://www.orekit.org/mailing-list-archives/orekit-users/msg00625.html same as this,check the implementation of getElevation
 
-                    //double degree = FastMath.toDegrees(c.getElevation(ss.getPVCoordinates().getPosition(), ss.getFrame(), ss.getDate()));
-                    double degree = FastMath.toDegrees(c.getElevation(ss.getPVCoordinates().getPosition(), earthFrame, ss.getDate()));
+                    double degree = FastMath.toDegrees(c.getElevation(ss.getPVCoordinates().getPosition(), ss.getFrame(), ss.getDate()));
+                    //double degree = FastMath.toDegrees(c.getElevation(ss.getPVCoordinates().getPosition(), earthFrame, ss.getDate()));
                     String name = String.format("%s->%s", c.getName(), Sat.getKey());
                     String name_backwards = String.format("%s->%s", Sat.getKey(), c.getName());
 
+
                     if (c.getName().equals("Beijing")){
-                        //System.out.println(degree);
+                        //System.out.println(degree+" | "+ c.getRange(ss.getPVCoordinates().getPosition(), ss.getFrame(), ss.getDate())+" | " + Sat.getKey());
                     }
 
-
                     if (degree > minAngle) {
+
+
+
                         double distance = c.getRange(ss.getPVCoordinates().getPosition(), ss.getFrame(), ss.getDate());
 
                         // ->
