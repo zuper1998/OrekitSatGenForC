@@ -54,6 +54,10 @@ public class Satellite_Sajat {
         // Line Format: semi-major axis| eccentricity | inclination | longitude asc. node | argument of periapsis | time of periapsis | sat name
         String s;
         while ((s = br.readLine()) != null) {
+            if (s.startsWith("#")){
+                continue;
+            }
+
             //s = s.replaceAll("[^\\x20-\\x7e]", "");
             StringTokenizer st = new StringTokenizer(s,"|");
             // semi major axis
